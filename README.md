@@ -179,3 +179,29 @@ Başarılı girişte JWT token ve kullanıcı bilgisi döner.
 
 ---
 Diğer kurallar ve mimari için CURSOR_RULES.md dosyasına bakabilirsiniz. 
+
+# FitTrack Web (Next.js)
+
+## Proje Tanımı
+
+## Kurulum
+- Next.js kurulumu
+- Gerekli paketler
+
+## Ortam Değişkenleri
+- .env.local örneği
+
+## Backend Entegrasyonu
+- API adresi ve örnek istek
+
+## Geliştirme
+- npm run dev
+
+## Deploy
+- Vercel deploy adımları
+
+## Kullanıcı Girişi
+- Login endpointi ve örnek body
+
+## Notlar
+- Ortak backend, ortam ayrımı, vs. 
