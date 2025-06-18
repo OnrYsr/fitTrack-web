@@ -52,7 +52,7 @@ fittrack-backend/
 3. **.env dosyasını oluştur:**
    ```
    PORT=3000
-   MONGODB_URI=mongodb://localhost:27017/fittrack
+   MONGODB_URI=mongodb+srv://onuryasar91:ADhH9XSsgXVutRi1@fittrackapp.b4lu7qh.mongodb.net/fittrackprod?retryWrites=true&w=majority&appName=FitTrackApp
    JWT_SECRET=your-super-secret-jwt-key
    ```
 
@@ -138,3 +138,44 @@ fittrack-backend/
 
 - Katkıda bulunmak için pull request gönderebilirsin.
 - Lisans: MIT 
+
+require('dotenv').config(); 
+
+## Ortam Değişkenleri (.env)
+
+Aşağıdaki satırı .env dosyanıza ekleyin:
+
+```
+MONGODB_URI=mongodb+srv://onuryasar91:ADhH9XSsgXVutRi1@fittrackapp.b4lu7qh.mongodb.net/fittrackprod?retryWrites=true&w=majority&appName=FitTrackApp
+```
+
+## Örnek Kullanıcı Bilgisi
+
+Script ile eklenen örnek kullanıcı:
+- **Email:** produser@fittrack.com
+- **Şifre:** 123456
+
+## Login Endpointi
+
+POST `/api/login`
+
+**Body:**
+```json
+{
+  "email": "produser@fittrack.com",
+  "password": "123456"
+}
+```
+
+Başarılı girişte JWT token ve kullanıcı bilgisi döner.
+
+## Ortamlar
+- **Prod:** fittrackprod veritabanı (Atlas cluster)
+- **Test:** test veritabanı (ayrı connection string ile kullanılabilir)
+
+## Notlar
+- Ortam değişkenlerini ve şifreleri kimseyle paylaşmayın.
+- Compass ile bağlanmak için aynı connection string kullanılabilir.
+
+---
+Diğer kurallar ve mimari için CURSOR_RULES.md dosyasına bakabilirsiniz. 
