@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+/**
+ * @swagger
+ * tags:
+ *   name: Docs
+ *   description: Döküman yönetimi
+ */
+
 // Mock veri (ileride DB'ye taşınacak)
 let docs = [
   { id: 1, type: 'help', title: 'Kullanım Kılavuzu', content: 'Uygulama kullanımı hakkında bilgiler...' },
@@ -9,22 +16,41 @@ let docs = [
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Doc:
+ *       type: object
+ *       required:
+ *         - id
+ *         - type
+ *         - title
+ *         - content
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: Döküman ID
+ *         type:
+ *           type: string
+ *           description: Döküman tipi
+ *         title:
+ *           type: string
+ *           description: Döküman başlığı
+ *         content:
+ *           type: string
+ *           description: Döküman içeriği
+ * 
  * /api/docs:
  *   get:
  *     summary: Get all documents
- *     tags: [Docs]
+ *     tags:
+ *       - Docs
  *     responses:
  *       200:
  *         description: Documents listed
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Doc'
  *   post:
  *     summary: Yeni döküman ekle
- *     tags: [Docs]
+ *     tags:
+ *       - Docs
  *     requestBody:
  *       required: true
  *       content:
@@ -58,27 +84,6 @@ let docs = [
  *                   example: Döküman eklendi
  *                 doc:
  *                   $ref: '#/components/schemas/Doc'
- *
- * /api/docs/{type}:
- *   get:
- *     summary: Tipine göre dökümanları getir
- *     tags: [Docs]
- *     parameters:
- *       - in: path
- *         name: type
- *         required: true
- *         schema:
- *           type: string
- *         description: Döküman tipi (ör: help, faq)
- *     responses:
- *       200:
- *         description: Filtrelenmiş dökümanlar
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Doc'
  */
 router.get('/docs', (req, res) => {
   res.json(docs);

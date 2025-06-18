@@ -9,8 +9,12 @@ const waterRoutes = require('./water');
 const goalsRoutes = require('./goals');
 const aiRoutes = require('./ai');
 const docsRoutes = require('./docs');
+const testRoutes = require('./test');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+const docRoutes = require('./routes/doc');
+const mealRoutes = require('./routes/meal');
+const goalRoutes = require('./routes/goal');
 
 const app = express();
 
@@ -30,22 +34,12 @@ app.use('/api', mealsRoutes);
 app.use('/api', waterRoutes);
 app.use('/api', goalsRoutes);
 app.use('/api/ai', aiRoutes);
-
-console.log('Docs route import ediliyor...');
 app.use('/api', docsRoutes);
-console.log('Docs route import edildi.');
-
-console.log('Test route import ediliyor...');
-const testRoutes = require('./test');
-console.log('Test route import edildi.');
-
-console.log('Test route app.use ediliyor...');
 app.use('/api', testRoutes);
-console.log('Test route app.use edildi.');
-
-console.log('Docs route app.use ediliyor...');
-app.use('/api', docsRoutes);
-console.log('Docs route app.use edildi.');
+app.use('/api', docRoutes);
+app.use('/api', mealRoutes);
+app.use('/api', waterRoutes);
+app.use('/api', goalRoutes);
 
 const swaggerOptions = {
   definition: {
@@ -58,6 +52,32 @@ const swaggerOptions = {
     servers: [
       { url: 'http://localhost:3000' }
     ],
+    components: {
+      schemas: {
+        Doc: {
+          type: 'object',
+          required: ['id', 'type', 'title', 'content'],
+          properties: {
+            id: {
+              type: 'integer',
+              description: 'Döküman ID'
+            },
+            type: {
+              type: 'string',
+              description: 'Döküman tipi'
+            },
+            title: {
+              type: 'string',
+              description: 'Döküman başlığı'
+            },
+            content: {
+              type: 'string',
+              description: 'Döküman içeriği'
+            }
+          }
+        }
+      }
+    }
   },
   apis: ['./src/*.js'], // Endpoint açıklamaları için
 };
