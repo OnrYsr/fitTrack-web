@@ -8,7 +8,7 @@ FitTrack, kullanıcıların sağlık ve egzersiz verilerini takip edebileceği, 
 
 - **Backend Framework:** Node.js (Express.js)
 - **Veritabanı:** MongoDB (Mongoose ile)
-- **API Dokümantasyonu:** Swagger (OpenAPI)
+- **API Dokümantasyonu:** Swagger (OpenAPI) + Detaylı Markdown
 - **Kimlik Doğrulama:** JWT (JSON Web Token)
 - **Geliştirme Ortamı:** Nodemon ile otomatik yeniden başlatma
 - **CORS:** Açık (mobil ve web istemciler için)
@@ -32,6 +32,8 @@ fittrack-backend/
 ├── .env                # Ortam değişkenleri (PORT, MONGODB_URI, JWT_SECRET)
 ├── package.json
 ├── README.md
+├── API_DOCUMENTATION.md    # Kapsamlı API dokümantasyonu
+└── frontend-api-service.js # Frontend için API servis dosyası
 ```
 
 ---
@@ -67,13 +69,16 @@ fittrack-backend/
 
 ---
 
-## API Dokümantasyonu (Swagger)
+## API Dokümantasyonu
 
-- Tüm endpointleri ve örnek istek/yanıtları görmek için:
-  ```
-  http://localhost:3000/api-docs
-  ```
-- Swagger/OpenAPI ile interaktif test ve dokümantasyon.
+### 📖 Kapsamlı API Dokümantasyonu
+Detaylı API dokümantasyonu için: **[API_DOCUMENTATION.md](./API_DOCUMENTATION.md)**
+
+### 🔧 Swagger UI
+Interaktif API testi için: **http://localhost:3000/api-docs**
+
+### 💻 Frontend API Service
+Frontend geliştirme için hazır API servis dosyası: **[frontend-api-service.js](./frontend-api-service.js)**
 
 ---
 
@@ -102,6 +107,25 @@ fittrack-backend/
 | /api/docs               | POST   | Yeni döküman ekle               |
 | /api/docs/{type}        | GET    | Tipine göre dökümanları getir   |
 | /api/test               | GET    | Test endpointi                  |
+
+---
+
+## Hızlı Test
+
+```bash
+# Test endpointi
+curl http://localhost:3000/api/test
+
+# Kullanıcı kaydı
+curl -X POST http://localhost:3000/api/register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"123456","name":"Test User"}'
+
+# Giriş
+curl -X POST http://localhost:3000/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"123456"}'
+```
 
 ---
 
@@ -134,12 +158,22 @@ fittrack-backend/
 
 ---
 
+## Frontend Geliştirme
+
+Frontend projenizde kullanmak için:
+
+1. **API Dokümantasyonu:** `API_DOCUMENTATION.md` dosyasını inceleyin
+2. **API Service:** `frontend-api-service.js` dosyasını frontend projenize kopyalayın
+3. **Base URL:** `http://localhost:3000/api`
+
+---
+
 ## Katkı ve Lisans
 
 - Katkıda bulunmak için pull request gönderebilirsin.
 - Lisans: MIT 
 
-require('dotenv').config(); 
+---
 
 ## Ortam Değişkenleri (.env)
 
@@ -178,7 +212,7 @@ Başarılı girişte JWT token ve kullanıcı bilgisi döner.
 - Compass ile bağlanmak için aynı connection string kullanılabilir.
 
 ---
-Diğer kurallar ve mimari için CURSOR_RULES.md dosyasına bakabilirsiniz. 
+Diğer kurallar ve mimari için CURSOR_RULES.md dosyasına bakabilirsiniz.
 
 # FitTrack Web (Next.js)
 
